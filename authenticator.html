@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AuthLite — Local Authenticator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">AuthLite</div>
+      <div class="toolbar">
+        <button class="btn" id="importBtn">Import</button>
+        <button class="btn" id="exportBtn">Export</button>
+        <button class="btn btn-primary" id="addBtn">+ Add</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty" style="display:none">
+      No accounts yet. Click <b>+ Add</b> to create your first TOTP entry.
+    </div>
+  </main>
+
+  <!-- Add/Edit Account Modal -->
+  <div class="modal" id="accountModal">
+    <div class="dialog">
+      <h3 id="accountModalTitle">Add Account</h3>
+      <div class="field">
+        <label>Name</label>
+        <input class="input" id="accountName" placeholder="e.g., GitHub" />
+      </div>
+      <div class="field">
+        <label>Base32 Secret</label>
+        <input class="input" id="accountSecret" placeholder="JBSWY3DPEHPK3PXP..." />
+        <div class="hint">Paste the Base32 secret (from “can’t scan?” on setup).</div>
+      </div>
+      <div class="row-end">
+        <button class="btn" id="accountCancel">Cancel</button>
+        <button class="btn btn-primary" id="accountSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Modal -->
+  <div class="modal" id="exportModal">
+    <div class="dialog">
+      <h3>Export Encrypted Backup</h3>
+      <div class="field">
+        <label>Password</label>
+        <input class="input" id="exportPass1" type="password" placeholder="Create a strong password" />
+      </div>
+      <div class="field">
+        <label>Confirm Password</label>
+        <input class="input" id="exportPass2" type="password" placeholder="Re-enter password" />
+      </div>
+      <div class="hint">AES-256-GCM, PBKDF2-SHA256 (200k iterations). If you lose this password, the backup can’t be recovered.</div>
+      <div class="row-end">
+        <button class="btn" id="exportCancel">Cancel</button>
+        <button class="btn btn-primary" id="exportGo">Export</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Modal -->
+  <div class="modal" id="importModal">
+    <div class="dialog">
+      <h3>Import Encrypted Backup</h3>
+      <div class="field">
+        <label>Backup File</label>
+        <div class="row" style="gap:8px">
+          <input class="input" id="importFileName" placeholder="Choose a .json backup" disabled />
+          <button class="btn" id="chooseFile">Browse</button>
+          <input type="file" id="fileInput" accept="application/json" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input class="input" id="importPass" type="password" placeholder="Backup password" />
+      </div>
+      <div class="row-end">
+        <button class="btn" id="importCancel">Cancel</button>
+        <button class="btn btn-primary" id="importGo">Import</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
