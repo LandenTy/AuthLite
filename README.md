@@ -1,6 +1,6 @@
 # AuthLite
 AuthLite is a lightweight, offline TOTP authenticator written entirely in vanilla HTML, CSS, and JavaScript.
-It runs entirely in your browser. Meaning, no backends, no dependencies, and full privacy.\
+It runs entirely in your browser. Meaning, no backends, no dependencies, and full privacy.
 
 ![AuthLite Preview](images/screenshot.png)
 
